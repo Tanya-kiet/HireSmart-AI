@@ -1,0 +1,179 @@
+import React from "react";
+import { FaSearch, FaTimes, FaSortAmountDown } from "react-icons/fa";
+
+function CandidateFilters({
+  searchTerm,
+  setSearchTerm,
+  categoryFilter,
+  setCategoryFilter,
+  statusFilter,
+  setStatusFilter,
+  scoreFilter,
+  setScoreFilter,
+  experienceFilter,
+  setExperienceFilter,
+  sortBy,
+  setSortBy,
+  onResetFilters,
+  totalCount,
+}) {
+  const categories = [
+    "All Categories",
+    "Software Engineering",
+    "Data Science & AI",
+    "Product & UI/UX Design",
+    "DevOps & Cloud",
+    "Product Management",
+  ];
+
+  const statuses = [
+    "All Statuses",
+    "New",
+    "Reviewed",
+    "Interview",
+    "Rejected",
+    "Hired",
+  ];
+
+  const scoreOptions = [
+    { label: "All Match Scores", value: "all" },
+    { label: "90%+ Top Match", value: "90" },
+    { label: "80%+ Strong Match", value: "80" },
+    { label: "70%+ Moderate", value: "70" },
+  ];
+
+  const expOptions = [
+    { label: "All Experience", value: "all" },
+    { label: "1 - 3 Yrs", value: "1-3" },
+    { label: "4 - 6 Yrs", value: "4-6" },
+    { label: "7+ Yrs Senior", value: "7+" },
+  ];
+
+  const sortOptions = [
+    { label: "Newest Uploaded", value: "newest" },
+    { label: "Highest Score", value: "score-desc" },
+    { label: "Lowest Score", value: "score-asc" },
+  ];
+
+  const hasActiveFilters =
+    searchTerm ||
+    categoryFilter !== "All Categories" ||
+    statusFilter !== "All Statuses" ||
+    scoreFilter !== "all" ||
+    experienceFilter !== "all";
+
+  return (
+    <div className="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-2xs space-y-3">
+      {/* Search Input Bar */}
+      <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
+        <div className="relative flex-1">
+          <FaSearch className="absolute left-3.5 top-3 text-slate-400 text-xs" />
+          <input
+            type="text"
+            placeholder="Search candidates by name, email, or skills..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full pl-9 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-hidden focus:ring-2 focus:ring-blue-500/20 focus:bg-white transition-all font-medium"
+          />
+          {searchTerm && (
+            <button
+              onClick={() => setSearchTerm("")}
+              className="absolute right-3 top-2.5 p-1 text-slate-400 hover:text-slate-600 rounded-md"
+            >
+              <FaTimes className="text-xs" />
+            </button>
+          )}
+        </div>
+
+        {/* Sort selector */}
+        <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-xs text-slate-700 font-medium">
+          <FaSortAmountDown className="text-slate-400 text-xs" />
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            className="bg-transparent text-slate-800 text-xs font-bold focus:outline-hidden cursor-pointer"
+          >
+            {sortOptions.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      {/* Filter Dropdowns Grid */}
+      <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-100">
+        {/* Category Dropdown */}
+        <select
+          value={categoryFilter}
+          onChange={(e) => setCategoryFilter(e.target.value)}
+          className="bg-slate-50 border border-slate-200 text-slate-700 text-xs rounded-xl p-2 font-medium focus:outline-hidden focus:ring-2 focus:ring-blue-500/20 cursor-pointer"
+        >
+          {categories.map((cat) => (
+            <option key={cat} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </select>
+
+        {/* Status Dropdown */}
+        <select
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+          className="bg-slate-50 border border-slate-200 text-slate-700 text-xs rounded-xl p-2 font-medium focus:outline-hidden focus:ring-2 focus:ring-blue-500/20 cursor-pointer"
+        >
+          {statuses.map((st) => (
+            <option key={st} value={st}>
+              {st}
+            </option>
+          ))}
+        </select>
+
+        {/* Match Score Filter */}
+        <select
+          value={scoreFilter}
+          onChange={(e) => setScoreFilter(e.target.value)}
+          className="bg-slate-50 border border-slate-200 text-slate-700 text-xs rounded-xl p-2 font-medium focus:outline-hidden focus:ring-2 focus:ring-blue-500/20 cursor-pointer"
+        >
+          {scoreOptions.map((opt) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
+
+        {/* Experience Filter */}
+        <select
+          value={experienceFilter}
+          onChange={(e) => setExperienceFilter(e.target.value)}
+          className="bg-slate-50 border border-slate-200 text-slate-700 text-xs rounded-xl p-2 font-medium focus:outline-hidden focus:ring-2 focus:ring-blue-500/20 cursor-pointer"
+        >
+          {expOptions.map((opt) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
+
+        {/* Reset Filters */}
+        {hasActiveFilters && (
+          <button
+            onClick={onResetFilters}
+            className="px-3 py-1.5 text-xs text-rose-600 hover:bg-rose-50 rounded-xl font-bold border border-rose-200 transition-colors cursor-pointer ml-auto"
+          >
+            Reset Filters
+          </button>
+        )}
+      </div>
+
+      <div className="flex items-center justify-between text-[11px] text-slate-500 font-medium">
+        <span>
+          Showing <span className="font-bold text-slate-800">{totalCount}</span> candidates
+        </span>
+      </div>
+    </div>
+  );
+}
+
+export default CandidateFilters;
