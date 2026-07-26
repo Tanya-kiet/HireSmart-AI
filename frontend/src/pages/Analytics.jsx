@@ -15,6 +15,8 @@ import {
   FaCheckCircle,
 } from "react-icons/fa";
 
+import Breadcrumbs from "../components/common/Breadcrumbs";
+
 function Analytics() {
   const [dateRange, setDateRange] = useState("Last 30 Days");
   const [alert, setAlert] = useState(null);
@@ -64,7 +66,9 @@ function Analytics() {
 
   return (
     <MainLayout>
-      <div className="space-y-6 max-w-7xl mx-auto pb-16 font-sans">
+      <div className="space-y-6 max-w-[1600px] w-full mx-auto pb-16 font-sans">
+        {/* Breadcrumb Navigation */}
+        <Breadcrumbs />
         {/* Top Header & Controls */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>

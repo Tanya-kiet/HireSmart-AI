@@ -18,6 +18,8 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 
+import Breadcrumbs from "../components/common/Breadcrumbs";
+
 function ProfilePage() {
   const { user, updateProfile } = useUser();
   const [activeTab, setActiveTab] = useState("profile");
@@ -124,7 +126,9 @@ function ProfilePage() {
 
   return (
     <MainLayout>
-      <div className="space-y-6 max-w-7xl mx-auto pb-16 font-sans">
+      <div className="space-y-6 max-w-[1600px] w-full mx-auto pb-16 font-sans">
+        {/* Breadcrumb Navigation */}
+        <Breadcrumbs />
         {/* Header Section */}
         <div>
           <h1 className="text-2xl font-bold text-slate-900 tracking-tight">

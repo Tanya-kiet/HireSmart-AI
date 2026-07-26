@@ -1,16 +1,18 @@
 import React from "react";
 import { FaSignOutAlt, FaExclamationTriangle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../context/UserContext";
 
 function SignOutDialog({ isOpen, onClose }) {
   const navigate = useNavigate();
+  const { logout } = useUser();
 
   if (!isOpen) return null;
 
   const handleConfirmSignOut = () => {
     onClose();
-    // Redirect to login or home
-    navigate("/");
+    logout();
+    navigate("/welcome", { replace: true });
   };
 
   return (
@@ -25,7 +27,7 @@ function SignOutDialog({ isOpen, onClose }) {
               Sign Out
             </h3>
             <p className="text-xs text-slate-500 font-medium">
-              Are you sure you want to sign out of HireSmart AI?
+              Are you sure you want to sign out of HireSmart AI? Your session will be completely cleared.
             </p>
           </div>
         </div>

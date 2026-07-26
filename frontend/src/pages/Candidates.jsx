@@ -16,6 +16,8 @@ import {
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
+import Breadcrumbs from "../components/common/Breadcrumbs";
+
 function Candidates() {
   const navigate = useNavigate();
 
@@ -209,7 +211,9 @@ function Candidates() {
 
   return (
     <MainLayout>
-      <div className="space-y-5 max-w-7xl mx-auto pb-16 font-sans">
+      <div className="space-y-5 max-w-[1600px] w-full mx-auto pb-16 font-sans">
+        {/* Breadcrumb Navigation */}
+        <Breadcrumbs />
         {/* Page Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>

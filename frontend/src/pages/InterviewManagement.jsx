@@ -9,6 +9,7 @@ import ScheduleDrawer from "../components/interviews/ScheduleDrawer";
 import Alert from "../components/common/Alert";
 import { mockInterviews16 } from "../components/interviews/interviewData";
 import { FaCalendarPlus, FaSearch, FaTimes } from "react-icons/fa";
+import Breadcrumbs from "../components/common/Breadcrumbs";
 
 function InterviewManagement() {
   const [interviewsList, setInterviewsList] = useState(mockInterviews16);

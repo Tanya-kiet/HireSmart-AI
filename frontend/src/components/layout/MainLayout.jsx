@@ -1,25 +1,16 @@
-import React, { useState } from "react";
-import Sidebar from "./Sidebar";
-import Navbar from "./Navbar";
+import React from "react";
+import TopNavbar from "./TopNavbar";
 
 function MainLayout({ children }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
   return (
-    <div className="h-screen w-screen overflow-hidden bg-slate-50/70 text-slate-900 font-sans antialiased selection:bg-blue-500 selection:text-white flex">
-      {/* 1. Fixed Left Sidebar (280px width, 100vh height) */}
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+    <div className="min-h-screen w-full bg-slate-50/70 text-slate-900 font-sans antialiased selection:bg-blue-500 selection:text-white flex flex-col overflow-x-hidden">
+      {/* 1. Sticky Top Navigation Bar (70px height) */}
+      <TopNavbar />
 
-      {/* 2. Right Section Container */}
-      <div className="flex-1 flex flex-col h-screen min-w-0 overflow-hidden relative lg:pl-[280px]">
-        {/* Fixed Top Navbar (80px height, fixed z-30) */}
-        <Navbar onToggleSidebar={() => setSidebarOpen((prev) => !prev)} />
-
-        {/* 3. Scrollable Main Content (Only this section scrolls vertically, 32px padding) */}
-        <main className="flex-1 overflow-y-auto pt-[80px] p-8 max-w-7xl w-full mx-auto space-y-6">
-          {children}
-        </main>
-      </div>
+      {/* 2. Full-Width Centered Main Content Area (Max width 1600px, 32px horizontal padding, 24px vertical padding) */}
+      <main className="flex-1 max-w-[1600px] w-full mx-auto px-6 sm:px-8 py-6 space-y-6">
+        {children}
+      </main>
     </div>
   );
 }
