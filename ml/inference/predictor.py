@@ -3,9 +3,9 @@ Reusable prediction functions for HireSmart AI.
 """
 
 from ml.inference.model_loader import (
-    classifier,
-    vectorizer,
-    label_encoder,
+    get_classifier,
+    get_vectorizer,
+    get_label_encoder,
 )
 
 from ml.inference.resume_parser import extract_text_from_pdf
@@ -16,6 +16,10 @@ def predict_resume_category(pdf_path: str) -> str:
     """
     Predict the resume category from a PDF.
     """
+    # Obtain lazy-loaded ML artifacts
+    vectorizer = get_vectorizer()
+    classifier = get_classifier()
+    label_encoder = get_label_encoder()
 
     # Extract text
     resume_text = extract_text_from_pdf(pdf_path)

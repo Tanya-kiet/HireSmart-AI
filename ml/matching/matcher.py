@@ -5,7 +5,7 @@ Handles Resume ↔ Job Description matching.
 """
 
 from ml.preprocessing.text_preprocessor import clean_resume
-from ml.inference.model_loader import vectorizer
+from ml.inference.model_loader import get_vectorizer
 from ml.matching.similarity import calculate_similarity
 
 
@@ -20,6 +20,7 @@ def calculate_match_score(resume_text: str, job_description: str):
     Returns:
         float
     """
+    vectorizer = get_vectorizer()
 
     # Clean both texts
     cleaned_resume = clean_resume(resume_text)
