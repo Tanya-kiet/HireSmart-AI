@@ -100,48 +100,6 @@ HireSmart AI combines Machine Learning with an enterprise recruitment workflow t
 
 ---
 
-# 🖥️ Screenshots
-
-> *(Add screenshots here after deployment)*
-
-## Welcome Page
-
-```
-/screenshots/welcome.png
-```
-
-## Recruiter Dashboard
-
-```
-/screenshots/dashboard.png
-```
-
-## Candidates
-
-```
-/screenshots/candidates.png
-```
-
-## Candidate Profile
-
-```
-/screenshots/profile.png
-```
-
-## Jobs Workspace
-
-```
-/screenshots/jobs.png
-```
-
-## Analytics
-
-```
-/screenshots/analytics.png
-```
-
----
-
 # ⚙️ Tech Stack
 
 ## Frontend
