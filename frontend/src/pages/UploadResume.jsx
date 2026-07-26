@@ -55,7 +55,7 @@ function UploadResume() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/predict/resume",
+        `${import.meta.env.VITE_API_BASE_URL}/predict/resume`,
         formData,
         {
           headers: {
@@ -99,8 +99,7 @@ function UploadResume() {
       const detailMsg =
         error.response?.data?.detail ||
         error.message ||
-        "Backend server at http://127.0.0.1:8000/predict/resume unreachable.";
-
+        "Unable to connect to the HireSmart AI server."
       setAlert({
         type: "error",
         title: "Backend Connection Notice",
